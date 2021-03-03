@@ -1,17 +1,17 @@
 package com.bankcanada.climate.station.core.mapper;
 
 import com.bankcanada.climate.station.core.model.Station;
-import com.bankcanada.climate.station.rest.dto.StationResponse;
+import com.bankcanada.climate.station.rest.dto.StationResp;
 import com.bankcanada.climate.common.ResponseConverter;
 import org.springframework.stereotype.Component;
 
 @Component
-public class StationResponseConverter implements ResponseConverter<Station, StationResponse>
+public class StationResponseConverter implements ResponseConverter<Station, StationResp>
 {
 
     @Override
-    public StationResponse toResponse (Station object) {
-        StationResponse dto = new StationResponse();
+    public StationResp toResponse (Station object) {
+        StationResp dto = new StationResp();
         dto.setName(object.getName());
         dto.setProvince(object.getProvince());
         dto.setDate(object.getDate());

@@ -2,7 +2,8 @@ package com.bankcanada.climate.station.rest.dto;
 
 import java.time.LocalDate;
 
-public class StationResponse {
+public class StationResp
+{
     private String name;
     private String province;
     private LocalDate date;

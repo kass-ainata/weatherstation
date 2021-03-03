@@ -1,7 +1,7 @@
 package com.bankcanada.climate.station.rest.controller;
 
-import com.bankcanada.climate.station.core.service.StationService;
-import com.bankcanada.climate.station.rest.dto.StationResponse;
+import com.bankcanada.climate.station.core.service.WeatherStationService;
+import com.bankcanada.climate.station.rest.dto.StationResp;
 import com.bankcanada.climate.common.Constants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,10 +18,10 @@ import java.util.List;
 @RestController
 @RequestMapping(Constants.V1_PATH_PREFIX + "/stations")
 public class ClimateRestController {
-    private StationService stationService;
+    private WeatherStationService stationService;
 
     @Autowired
-    public ClimateRestController(StationService stationService) {
+    public ClimateRestController(WeatherStationService stationService) {
         this.stationService = stationService;
 
     }
@@ -31,7 +31,7 @@ public class ClimateRestController {
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public List<StationResponse> getAllStations() {
+    public List<StationResp> getAllStations() {
         return this.stationService.getAllStations();
     }
 }

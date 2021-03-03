@@ -1,6 +1,6 @@
 package com.bankcanada.climate.station.ui;
 
-import com.bankcanada.climate.station.core.service.StationService;
+import com.bankcanada.climate.station.core.service.WeatherStationService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,11 +18,11 @@ public class UIController
 {
     Logger logger = LoggerFactory.getLogger(UIController.class);
 
-    private StationService stationService;
+    private WeatherStationService stationService;
     //todo: add facade layer in order to de-couple service layer from controller layer
 
     @Autowired
-    public UIController(StationService stationService) {
+    public UIController(WeatherStationService stationService) {
         this.stationService = stationService;
     }
 
