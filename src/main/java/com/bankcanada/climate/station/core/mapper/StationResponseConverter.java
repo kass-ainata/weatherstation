@@ -6,7 +6,7 @@ import com.bankcanada.climate.common.ResponseConverter;
 import org.springframework.stereotype.Component;
 
 @Component
-public class StationResponseMapper implements ResponseConverter<Station, StationResponse>
+public class StationResponseConverter implements ResponseConverter<Station, StationResponse>
 {
 
     @Override

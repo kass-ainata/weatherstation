@@ -1,6 +1,6 @@
 package com.bankcanada.climate.station.core.service;
 
-import com.bankcanada.climate.station.core.mapper.StationResponseMapper;
+import com.bankcanada.climate.station.core.mapper.StationResponseConverter;
 import com.bankcanada.climate.station.core.model.Station;
 import com.bankcanada.climate.station.core.repo.StationRepository;
 import com.bankcanada.climate.station.rest.dto.StationResponse;
@@ -21,11 +21,11 @@ import java.util.regex.Pattern;
 public class StationServiceImpl implements StationService {
     Logger logger = LoggerFactory.getLogger(StationServiceImpl.class);
 
-    private StationResponseMapper responseMapper;
+    private StationResponseConverter responseMapper;
     private StationRepository stationRepository;
 
     @Autowired
-    public StationServiceImpl(StationResponseMapper responseMapper, StationRepository stationRepository) {
+    public StationServiceImpl(StationResponseConverter responseMapper, StationRepository stationRepository) {
         this.responseMapper = responseMapper;
         this.stationRepository = stationRepository;
         insertDataIntoDB();
