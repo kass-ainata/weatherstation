@@ -7,9 +7,9 @@ import java.util.List;
 
 public interface WeatherStationService
 {
-    List<StationResp> getAllStations();
-    StationResp getStationByNameAndProvAndDate(String stationName, String province, LocalDate date);
-    List<StationResp> findAllDateByDate(LocalDate date);
-    List<StationResp> findAllDataBetweenDates(LocalDate dateStart, LocalDate dateEnd);
-    List<StationResp> findAllDataBetweenDates(String dateStart, String dateEnd);
+    List<StationResp> getAllWeatherStations();
+    List<StationResp> findAllByDate(LocalDate aDate);
+    List<StationResp> findAllIntervalDates(LocalDate fromDate, LocalDate toDate);
+    List<StationResp> findAllIntervalDates(String fromDate, String toDate);
+    StationResp getWeatherStationByNameProvDate(String aStationName, String aProvince, LocalDate aDate);
 }

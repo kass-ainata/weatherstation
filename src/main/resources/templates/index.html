@@ -9,7 +9,7 @@
 <div>
     <h4>Choose Date Range</h4>
     <form action="#" th:action="@{/}" th:object="${RequestDateRange}" method="post">
-        <p>Start Date: <input required pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}" placeholder="Format: yyyy-mm-dd" type="text" th:field="*{startDate}" /> End Date: <input required pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}" placeholder="Format: yyyy-mm-dd" type="text" th:field="*{endDate}" />
+        <p>Start Date: <input required pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}" placeholder="Format: yyyy-mm-dd" type="text" th:field="*{fromDate}" /> End Date: <input required pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}" placeholder="Format: yyyy-mm-dd" type="text" th:field="*{toDate}" />
             <input type="submit" value="Filter" />
         </p>
     </form>

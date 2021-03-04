@@ -8,9 +8,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Repository
-public interface StationRepository extends JpaRepository<Station, Long> {
-    Station findByName(String name);
-    List<Station> findAllByName(String name);
+public interface WeatherStationRepository extends JpaRepository<Station, Long> {
     Station findByNameAndProvinceAndDate(String name, String province, LocalDate date);
     List<Station> findByDate(LocalDate date);
     List<Station> findAllByDateBetweenOrderByDate (LocalDate dateStart, LocalDate dateEnd);

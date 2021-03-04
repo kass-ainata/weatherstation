@@ -32,6 +32,6 @@ public class ClimateRestController {
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public List<StationResp> getAllStations() {
-        return this.stationService.getAllStations();
+        return this.stationService.getAllWeatherStations();
     }
 }

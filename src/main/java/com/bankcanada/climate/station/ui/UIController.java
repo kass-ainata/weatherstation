@@ -30,14 +30,14 @@ public class UIController
     @GetMapping("/")
     public String getMainPage(Model model) {
         model.addAttribute("RequestDateRange", new ReqDateInterval());
-        model.addAttribute("stations", stationService.getAllStations());
+        model.addAttribute("stations", stationService.getAllWeatherStations());
         return "index";
     }
 
     @PostMapping("/")
     public String getStationsByDateRange(Model model, @ModelAttribute ReqDateInterval dateRange) {
         model.addAttribute("RequestDateRange", dateRange);
-        model.addAttribute("stations", stationService.findAllDataBetweenDates(dateRange.getStartDate(), dateRange.getEndDate()));
+        model.addAttribute("stations", stationService.findAllIntervalDates(dateRange.getFromDate(), dateRange.getToDate()));
         return "index";
     }
 
@@ -50,7 +50,7 @@ public class UIController
             @RequestParam(name = "date", required = true, defaultValue = "") String date,
             Model model) {
         LocalDate dateE = LocalDate.parse(date);
-        model.addAttribute("station", stationService.getStationByNameAndProvAndDate(name, province, dateE));
+        model.addAttribute("station", stationService.getWeatherStationByNameProvDate(name, province, dateE));
         return "details";
     }
 

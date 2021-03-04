@@ -1,23 +1,12 @@
 package com.bankcanada.climate.station.ui;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Setter
+@Getter
 public class ReqDateInterval
 {
-    private String startDate;
-    private String endDate;
-
-    public String getStartDate() {
-        return startDate;
-    }
-
-    public void setStartDate(String startDate) {
-        this.startDate = startDate;
-    }
-
-    public String getEndDate() {
-        return endDate;
-    }
-
-    public void setEndDate(String endDate) {
-        this.endDate = endDate;
-    }
+    private String fromDate;
+    private String toDate;
 }

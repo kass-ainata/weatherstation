@@ -1,7 +1,7 @@
 package com.bankcanada.climate.station.core.service;
 
 import com.bankcanada.climate.station.core.mapper.StationResponseConverter;
-import com.bankcanada.climate.station.core.repo.StationRepository;
+import com.bankcanada.climate.station.core.repo.WeatherStationRepository;
 import com.bankcanada.climate.station.rest.dto.StationResp;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,47 +18,53 @@ public class WeatherStationServiceImpl implements WeatherStationService
     Logger logger = LoggerFactory.getLogger(WeatherStationServiceImpl.class);
 
     private StationResponseConverter responseMapper;
-    private StationRepository stationRepository;
-    private StationDataLoader stationDataLoader;
+    private WeatherStationRepository weatherStationRepository;
+    private WeatherStationDataLoader weatherStationDataLoader;
 
     @Autowired
-    public WeatherStationServiceImpl(StationResponseConverter responseMapper, StationRepository stationRepository, StationDataLoader stationDataLoader) {
+    public WeatherStationServiceImpl(StationResponseConverter responseMapper, WeatherStationRepository weatherStationRepository, WeatherStationDataLoader weatherStationDataLoader) {
         this.responseMapper = responseMapper;
-        this.stationRepository = stationRepository;
-        this.stationDataLoader = stationDataLoader;
-        stationDataLoader.readLoadCsvData();
+        this.weatherStationRepository = weatherStationRepository;
+        this.weatherStationDataLoader = weatherStationDataLoader;
+        init();
+    }
+
+    private void init(){
+        weatherStationDataLoader.readLoadCsvData();
     }
 
     @Override
-    public List<StationResp>  getAllStations() {
-        return this.responseMapper.toResponseList(this.stationRepository.findAllByOrderByDateAsc());
+    public List<StationResp> getAllWeatherStations() {
+        return this.responseMapper.toResponseList(this.weatherStationRepository.findAllByOrderByDateAsc());
     }
 
     @Override
-    public StationResp getStationByNameAndProvAndDate(String stationName, String province, LocalDate date) {
-        return this.responseMapper.toResponse(stationRepository.findByNameAndProvinceAndDate(stationName, province, date));
+    public StationResp getWeatherStationByNameProvDate(String stationName, String province, LocalDate date) {
+        return this.responseMapper.toResponse(
+                weatherStationRepository.findByNameAndProvinceAndDate(stationName, province, date));
     }
 
     @Override
-    public List<StationResp> findAllDateByDate(LocalDate date) {
-        return this.responseMapper.toResponseList(stationRepository.findByDate(date));
+    public List<StationResp> findAllByDate(LocalDate date) {
+        return this.responseMapper.toResponseList(weatherStationRepository.findByDate(date));
     }
 
     @Override
-    public List<StationResp> findAllDataBetweenDates(LocalDate dateStart, LocalDate dateEnd) {
-        return this.responseMapper.toResponseList(stationRepository.findAllByDateBetweenOrderByDate(dateStart, dateEnd));
+    public List<StationResp> findAllIntervalDates(LocalDate dateStart, LocalDate dateEnd) {
+        return this.responseMapper.toResponseList(
+                weatherStationRepository.findAllByDateBetweenOrderByDate(dateStart, dateEnd));
     }
 
     @Override
-    public List<StationResp> findAllDataBetweenDates(String dateStart, String dateEnd) {
+    public List<StationResp> findAllIntervalDates(String dateStart, String dateEnd) {
         if ((dateStart == null || dateStart.isEmpty()) && (dateEnd == null || dateEnd.isEmpty())) {
-            return this.getAllStations();
+            return this.getAllWeatherStations();
         } else if (dateStart == null || dateStart.isEmpty()) {
-            return this.findAllDateByDate(mapStringToLocalDate(dateEnd));
+            return this.findAllByDate(mapStringToLocalDate(dateEnd));
         } else if (dateEnd == null || dateEnd.isEmpty()) {
-            return this.findAllDateByDate(mapStringToLocalDate(dateStart));
+            return this.findAllByDate(mapStringToLocalDate(dateStart));
         } else {
-            return this.findAllDataBetweenDates(mapStringToLocalDate(dateStart), mapStringToLocalDate(dateEnd));
+            return this.findAllIntervalDates(mapStringToLocalDate(dateStart), mapStringToLocalDate(dateEnd));
         }
     }
 

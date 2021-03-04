@@ -1,7 +1,7 @@
 package com.bankcanada.climate.station.core.service;
 
 import com.bankcanada.climate.station.core.model.Station;
-import com.bankcanada.climate.station.core.repo.StationRepository;
+import com.bankcanada.climate.station.core.repo.WeatherStationRepository;
 import com.opencsv.CSVReader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,18 +17,18 @@ import java.util.List;
 import java.util.regex.Pattern;
 
 @Service
-public class StationDataLoader
+public class WeatherStationDataLoader
 {
     public static final String DATE_REGEX = "\\d\\d/\\d\\d/\\d\\d\\d\\d";
     public static final String DATE_PATTERN = "dd/MM/yyyy";
     public static final String DOUBLE_REGEX = "-?\\d+(\\.\\d+)?";
-    public static final String CSV_FILE = "data.csv";
+    public static final String CSV_FILE = "weather-station-data.csv";
 
-    StationRepository stationRepository;
-    Logger logger = LoggerFactory.getLogger(StationDataLoader.class);
+    WeatherStationRepository weatherStationRepository;
+    Logger logger = LoggerFactory.getLogger(WeatherStationDataLoader.class);
 
-    public StationDataLoader(StationRepository stationRepository) {
-        this.stationRepository = stationRepository;
+    public WeatherStationDataLoader(WeatherStationRepository weatherStationRepository) {
+        this.weatherStationRepository = weatherStationRepository;
     }
 
     /**
@@ -38,7 +38,7 @@ public class StationDataLoader
     public void readLoadCsvData() {
         try {
             for (String[] line : readAll()) {
-                this.stationRepository.save(new Station(line[0], line[1],  getDate(line[2]),
+                this.weatherStationRepository.save(new Station(line[0], line[1],  getDate(line[2]),
                         getParseDouble(line[3]), getParseDouble(line[4]), getParseDouble(line[5])));
             }
         } catch (Exception ex) {
