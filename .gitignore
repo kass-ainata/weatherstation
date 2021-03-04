@@ -1,31 +1,27 @@
+# don't need the ** to make git work, but intellij will only ignore the
+# directories at the root if you just do 'dir/'
+**/.gradle/
+**/out
+**/bin
+**/build/
+**/generated/
+**/node_modules/
+**/.idea
+
+*.iml
+
+.idea
+*.iws
+*.ipr
+
+# mac folder metadata
+.DS_Store
+
+*.rdb
+
 HELP.md
 target/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**
 !**/src/test/**
 
-### STS ###
-.apt_generated
-.classpath
-.factorypath
-.project
-.settings
-.springBeans
-.sts4-cache
-
-### IntelliJ IDEA ###
-.idea
-*.iws
-*.iml
-*.ipr
-
-### NetBeans ###
-/nbproject/private/
-/nbbuild/
-/dist/
-/nbdist/
-/.nb-gradle/
-build/
-
-### VS Code ###
-.vscode/

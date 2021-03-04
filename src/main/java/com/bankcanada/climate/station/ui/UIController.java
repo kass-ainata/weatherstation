@@ -1,8 +1,7 @@
 package com.bankcanada.climate.station.ui;
 
 import com.bankcanada.climate.station.core.service.WeatherStationService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,11 +12,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.time.LocalDate;
 
+@Slf4j
 @Controller
 public class UIController
 {
-    Logger logger = LoggerFactory.getLogger(UIController.class);
-
     private WeatherStationService stationService;
     //todo: add facade layer in order to de-couple service layer from controller layer
 

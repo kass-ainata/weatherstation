@@ -3,32 +3,28 @@ package com.bankcanada.climate.station.core.service;
 import com.bankcanada.climate.station.core.mapper.StationResponseConverter;
 import com.bankcanada.climate.station.core.repo.WeatherStationRepository;
 import com.bankcanada.climate.station.rest.dto.StationResp;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.PostConstruct;
 import java.time.LocalDate;
 import java.util.List;
-
+@AllArgsConstructor
 @Service
+@Slf4j
 public class WeatherStationServiceImpl implements WeatherStationService
 {
-
-    Logger logger = LoggerFactory.getLogger(WeatherStationServiceImpl.class);
-
     private StationResponseConverter responseMapper;
     private WeatherStationRepository weatherStationRepository;
     private WeatherStationDataLoader weatherStationDataLoader;
 
-    @Autowired
-    public WeatherStationServiceImpl(StationResponseConverter responseMapper, WeatherStationRepository weatherStationRepository, WeatherStationDataLoader weatherStationDataLoader) {
-        this.responseMapper = responseMapper;
-        this.weatherStationRepository = weatherStationRepository;
-        this.weatherStationDataLoader = weatherStationDataLoader;
-        init();
-    }
 
+    @PostConstruct
     private void init(){
         weatherStationDataLoader.readLoadCsvData();
     }
@@ -76,7 +72,7 @@ public class WeatherStationServiceImpl implements WeatherStationService
              dateToReturn = LocalDate.parse(date);
         } catch (Exception ex) {
             //todo: throw special exception - add exception handler
-            logger.error("failed to parse date");
+            log.error("failed to parse date");
             throw ex;
         }
         return dateToReturn;

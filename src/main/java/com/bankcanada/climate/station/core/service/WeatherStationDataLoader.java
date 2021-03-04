@@ -3,8 +3,8 @@ package com.bankcanada.climate.station.core.service;
 import com.bankcanada.climate.station.core.model.Station;
 import com.bankcanada.climate.station.core.repo.WeatherStationRepository;
 import com.opencsv.CSVReader;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.io.Reader;
@@ -16,6 +16,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
 
+@Slf4j
+@AllArgsConstructor
 @Service
 public class WeatherStationDataLoader
 {
@@ -25,11 +27,6 @@ public class WeatherStationDataLoader
     public static final String CSV_FILE = "weather-station-data.csv";
 
     WeatherStationRepository weatherStationRepository;
-    Logger logger = LoggerFactory.getLogger(WeatherStationDataLoader.class);
-
-    public WeatherStationDataLoader(WeatherStationRepository weatherStationRepository) {
-        this.weatherStationRepository = weatherStationRepository;
-    }
 
     /**
      *  loads the csv file
@@ -42,7 +39,7 @@ public class WeatherStationDataLoader
                         getParseDouble(line[3]), getParseDouble(line[4]), getParseDouble(line[5])));
             }
         } catch (Exception ex) {
-            logger.error("Unexpected error occured, failed to load the cvs data into the database", ex);
+            log.error("Unexpected error occured, failed to load the cvs data into the database", ex);
         }
     }
 
