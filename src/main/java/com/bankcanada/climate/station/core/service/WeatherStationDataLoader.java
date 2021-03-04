@@ -1,6 +1,6 @@
 package com.bankcanada.climate.station.core.service;
 
-import com.bankcanada.climate.station.core.model.Station;
+import com.bankcanada.climate.station.core.model.WeatherStation;
 import com.bankcanada.climate.station.core.repo.WeatherStationRepository;
 import com.opencsv.CSVReader;
 import lombok.AllArgsConstructor;
@@ -35,7 +35,7 @@ public class WeatherStationDataLoader
     public void readLoadCsvData() {
         try {
             for (String[] line : readAll()) {
-                this.weatherStationRepository.save(new Station(line[0], line[1],  getDate(line[2]),
+                this.weatherStationRepository.save(new WeatherStation(line[0], line[1],  getDate(line[2]),
                         getParseDouble(line[3]), getParseDouble(line[4]), getParseDouble(line[5])));
             }
         } catch (Exception ex) {

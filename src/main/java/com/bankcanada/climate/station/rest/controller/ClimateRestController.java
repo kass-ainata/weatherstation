@@ -1,8 +1,7 @@
 package com.bankcanada.climate.station.rest.controller;
 
 import com.bankcanada.climate.station.core.service.WeatherStationService;
-import com.bankcanada.climate.station.rest.dto.StationResp;
-import com.bankcanada.climate.common.Constants;
+import com.bankcanada.climate.station.rest.dto.WeatherStationResp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,7 +15,7 @@ import java.util.List;
  * REST endpoints for retrieving climate data
  */
 @RestController
-@RequestMapping(Constants.V1_PATH_PREFIX + "/stations")
+@RequestMapping( "/api/v1/stations")
 public class ClimateRestController {
     private WeatherStationService stationService;
 
@@ -31,7 +30,7 @@ public class ClimateRestController {
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public List<StationResp> getAllStations() {
+    public List<WeatherStationResp> getAllStations() {
         return this.stationService.getAllWeatherStations();
     }
 }

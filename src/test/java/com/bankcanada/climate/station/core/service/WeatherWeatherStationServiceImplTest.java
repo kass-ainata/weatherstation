@@ -1,13 +1,13 @@
 package com.bankcanada.climate.station.core.service;
 
-import com.bankcanada.climate.station.core.model.Station;
+import com.bankcanada.climate.station.core.model.WeatherStation;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
 
-class WeatherStationServiceImplTest
+class WeatherWeatherStationServiceImplTest
 {
 
     @BeforeEach
@@ -20,7 +20,7 @@ class WeatherStationServiceImplTest
 
     @Test
     void getAllStations() {
-        Station station = new Station("st", "adsf", LocalDate.now(), null, null, null);
+        WeatherStation weatherStation = new WeatherStation("st", "adsf", LocalDate.now(), null, null, null);
     }
 
 

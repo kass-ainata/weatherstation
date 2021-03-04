@@ -1,14 +1,10 @@
 package com.bankcanada.climate.station.core.service;
 
-import com.bankcanada.climate.station.core.mapper.StationResponseConverter;
+import com.bankcanada.climate.station.core.converter.StationResponseConverter;
 import com.bankcanada.climate.station.core.repo.WeatherStationRepository;
-import com.bankcanada.climate.station.rest.dto.StationResp;
+import com.bankcanada.climate.station.rest.dto.WeatherStationResp;
 import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
@@ -30,29 +26,29 @@ public class WeatherStationServiceImpl implements WeatherStationService
     }
 
     @Override
-    public List<StationResp> getAllWeatherStations() {
+    public List<WeatherStationResp> getAllWeatherStations() {
         return this.responseMapper.toResponseList(this.weatherStationRepository.findAllByOrderByDateAsc());
     }
 
     @Override
-    public StationResp getWeatherStationByNameProvDate(String stationName, String province, LocalDate date) {
-        return this.responseMapper.toResponse(
+    public WeatherStationResp getWeatherStationByNameProvDate(String stationName, String province, LocalDate date) {
+        return this.responseMapper.toResponseDto(
                 weatherStationRepository.findByNameAndProvinceAndDate(stationName, province, date));
     }
 
     @Override
-    public List<StationResp> findAllByDate(LocalDate date) {
+    public List<WeatherStationResp> findAllByDate(LocalDate date) {
         return this.responseMapper.toResponseList(weatherStationRepository.findByDate(date));
     }
 
     @Override
-    public List<StationResp> findAllIntervalDates(LocalDate dateStart, LocalDate dateEnd) {
+    public List<WeatherStationResp> findAllIntervalDates(LocalDate dateStart, LocalDate dateEnd) {
         return this.responseMapper.toResponseList(
                 weatherStationRepository.findAllByDateBetweenOrderByDate(dateStart, dateEnd));
     }
 
     @Override
-    public List<StationResp> findAllIntervalDates(String dateStart, String dateEnd) {
+    public List<WeatherStationResp> findAllIntervalDates(String dateStart, String dateEnd) {
         if ((dateStart == null || dateStart.isEmpty()) && (dateEnd == null || dateEnd.isEmpty())) {
             return this.getAllWeatherStations();
         } else if (dateStart == null || dateStart.isEmpty()) {
