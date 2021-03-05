@@ -1,7 +1,7 @@
 package com.bankcanada.climate.station.core.converter;
 
 import com.bankcanada.climate.station.core.model.WeatherStation;
-import com.bankcanada.climate.station.rest.dto.WeatherStationResp;
+import com.bankcanada.climate.station.dto.WeatherStationResp;
 import com.bankcanada.climate.common.ResponseConverter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;

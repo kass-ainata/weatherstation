@@ -4,14 +4,13 @@ import static com.bankcanada.climate.station.util.Utils.toLocalDate;
 
 import com.bankcanada.climate.station.core.converter.StationResponseConverter;
 import com.bankcanada.climate.station.core.repo.WeatherStationRepository;
-import com.bankcanada.climate.station.rest.dto.WeatherStationResp;
+import com.bankcanada.climate.station.dto.WeatherStationResp;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 @AllArgsConstructor
 @Service

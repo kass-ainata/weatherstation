@@ -1,10 +1,12 @@
-package com.bankcanada.climate.station.rest.dto;
+package com.bankcanada.climate.station.dto;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDate;
 
+@NoArgsConstructor
 @Getter
 @Setter
 public class WeatherStationResp

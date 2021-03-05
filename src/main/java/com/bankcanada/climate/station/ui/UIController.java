@@ -16,40 +16,58 @@ import java.time.LocalDate;
 @Controller
 public class UIController
 {
-    private WeatherStationService stationService;
-    //todo: add facade layer in order to de-couple service layer from controller layer
+    //todo: enhancement - the service layer should be always decoupled from the
+    // controller layer using using an orch layer
+    private WeatherStationService weatherStationService;
 
     @Autowired
-    public UIController(WeatherStationService stationService) {
-        this.stationService = stationService;
+    public UIController(WeatherStationService weatherStationService) {
+        this.weatherStationService = weatherStationService;
     }
 
-    //first thing the user loads
-    @GetMapping("/")
-    public String getMainPage(Model model) {
-        model.addAttribute("ReqDateRange", new ReqDateInterval());
-        model.addAttribute("stations", stationService.getAllWeatherStations());
-        return "index";
-    }
-
+    /**
+     * When the user provieds a date range
+     *
+     * @param model
+     * @param dateRange
+     * @return
+     */
     @PostMapping("/")
     public String getStationsByDateRange(Model model, @ModelAttribute ReqDateInterval dateRange) {
         model.addAttribute("ReqDateRange", dateRange);
-        model.addAttribute("stations", stationService.findAllIntervalDates(dateRange.getFromDate(), dateRange.getToDate()));
+        model.addAttribute("stations", weatherStationService.findAllIntervalDates(dateRange.getFromDate(), dateRange.getToDate()));
         return "index";
     }
 
-    //user clicks on mean temp hyper link
+    /**
+     * initial page
+     *
+     * @param model
+     * @return
+     */
+    @GetMapping("/")
+    public String getMainPage(Model model) {
+        model.addAttribute("ReqDateRange", new ReqDateInterval());
+        model.addAttribute("stations", weatherStationService.getAllWeatherStations());
+        return "index";
+    }
+
+    /**
+     * When the user gets the station details
+     *
+     * @param name
+     * @param province
+     * @param date
+     * @param model
+     * @return
+     */
     @GetMapping("/station-details")
     public String getStationDetails(
             @RequestParam(name = "name", required = true, defaultValue = "")  String name,
             @RequestParam(name = "province", required = true, defaultValue = "")  String province,
-            //todo: let thymeleaf/spring marshal into localdate
             @RequestParam(name = "date", required = true, defaultValue = "") String date,
             Model model) {
-        LocalDate dateE = LocalDate.parse(date);
-        model.addAttribute("station", stationService.getWeatherStationByNameProvDate(name, province, dateE));
+        model.addAttribute("station", weatherStationService.getWeatherStationByNameProvDate(name, province, LocalDate.parse(date)));
         return "station-details";
     }
-
 }

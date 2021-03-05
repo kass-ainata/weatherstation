@@ -1,6 +1,6 @@
 package com.bankcanada.climate.station.core.service;
 
-import com.bankcanada.climate.station.rest.dto.WeatherStationResp;
+import com.bankcanada.climate.station.dto.WeatherStationResp;
 
 import java.time.LocalDate;
 import java.util.List;

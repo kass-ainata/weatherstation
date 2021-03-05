@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html xmlns:layout="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.w3.org/1999/xhtml">
+<html xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <title>Detailed Station Information</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+          crossorigin="anonymous">
 </head>
 <body>
 <div>
@@ -26,12 +27,12 @@
 
         <tbody>
         <tr>
-            <td th:text="${station.name}">Station Name</td>
+            <td th:text="${station.name}">Station</td>
             <td th:text="${station.province}">Province</td>
-            <td th:text="${station.date}">July 11, 2012</td>
-            <td th:text="${#strings.isEmpty(station.meanTemp)} ? 'Not Available' : ${station.meanTemp}">3.6</td>
-            <td th:text="${#strings.isEmpty(station.monthlyMaxTemp)} ? 'Not Available' : ${station.monthlyMaxTemp}">6.4</td>
-            <td th:text="${#strings.isEmpty(station.monthlyMinTemp)} ? 'Not Available' : ${station.monthlyMinTemp}">5.3</td>
+            <td th:text="${station.date}">March 3, 2021</td>
+            <td th:text="${#strings.isEmpty(station.meanTemp)} ? 'Not Available' : ${station.meanTemp}">5.5</td>
+            <td th:text="${#strings.isEmpty(station.monthlyMaxTemp)} ? 'Not Available' : ${station.monthlyMaxTemp}">15.5</td>
+            <td th:text="${#strings.isEmpty(station.monthlyMinTemp)} ? 'Not Available' : ${station.monthlyMinTemp}">4.0</td>
         </tr>
         </tbody>
 
