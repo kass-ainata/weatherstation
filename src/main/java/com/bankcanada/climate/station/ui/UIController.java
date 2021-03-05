@@ -40,7 +40,7 @@ public class UIController
     }
 
     //user clicks on mean temp hyper link
-    @GetMapping("/details")
+    @GetMapping("/station-details")
     public String getStationDetails(
             @RequestParam(name = "name", required = true, defaultValue = "")  String name,
             @RequestParam(name = "province", required = true, defaultValue = "")  String province,
@@ -49,7 +49,7 @@ public class UIController
             Model model) {
         LocalDate dateE = LocalDate.parse(date);
         model.addAttribute("station", stationService.getWeatherStationByNameProvDate(name, province, dateE));
-        return "details";
+        return "station-details";
     }
 
 }

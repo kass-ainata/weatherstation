@@ -34,7 +34,7 @@
         <tr th:each="station : ${stations}">
             <td th:text="${station.name}">Station Name</td>
             <td th:text="${station.date}">July 11, 2012</td>
-            <td><a href="details.html" th:href="@{/details(name=${station.name},province=${station.province},date=${station.date})}" th:text="${#strings.isEmpty(station.meanTemp)} ? 'Not Available' : ${station.meanTemp}">3.5</a></td>
+            <td><a href="station-details.html" th:href="@{/station-details(name=${station.name},province=${station.province},date=${station.date})}" th:text="${#strings.isEmpty(station.meanTemp)} ? 'Not Available' : ${station.meanTemp}">3.5</a></td>
         </tr>
         </tbody>
     </table>
