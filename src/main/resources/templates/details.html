@@ -6,17 +6,21 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 <body>
-
 <div>
-    <table class="table table-bordered table-striped">
+    <p></p>
+    <a href="" th:href="@{/}"><span>Back to Main</span></a>
+    <p></p>
+</div>
+<div>
+    <table class="table table-bordered table-hover table-dark">
         <thead>
         <tr>
-            <td>Station Name</td>
+            <td>Weather Station</td>
             <td>Province</td>
             <td>Date</td>
-            <td>Mean Temperature</td>
-            <td>Highest Monthly Maximum Temperature</td>
-            <td>Lowest Monthly Minimum Temperature</td>
+            <td>Temperature</td>
+            <td>Highest Monthly Max Temperature</td>
+            <td>Lowest Monthly Min Temperature</td>
         </tr>
         </thead>
 
@@ -25,13 +29,18 @@
             <td th:text="${station.name}">Station Name</td>
             <td th:text="${station.province}">Province</td>
             <td th:text="${station.date}">July 11, 2012</td>
-            <td th:text="${#strings.isEmpty(station.meanTemp)} ? 'Data Not Available' : ${station.meanTemp}">3.6</td>
-            <td th:text="${#strings.isEmpty(station.highestMonthlyMaxTemp)} ? 'Data Not Available' : ${station.highestMonthlyMaxTemp}">6.4</td>
-            <td th:text="${#strings.isEmpty(station.lowestMonthlyMinTemp)} ? 'Data Not Available' : ${station.lowestMonthlyMinTemp}">5.3</td>
+            <td th:text="${#strings.isEmpty(station.meanTemp)} ? 'Not Available' : ${station.meanTemp}">3.6</td>
+            <td th:text="${#strings.isEmpty(station.monthlyMaxTemp)} ? 'Not Available' : ${station.monthlyMaxTemp}">6.4</td>
+            <td th:text="${#strings.isEmpty(station.monthlyMinTemp)} ? 'Not Available' : ${station.monthlyMinTemp}">5.3</td>
         </tr>
         </tbody>
 
     </table>
+</div>
+
+<div>
+    <p></p>
+        <a href="" th:href="@{/}"><span>Back to Main</span></a>
 </div>
 </body>
 </html>

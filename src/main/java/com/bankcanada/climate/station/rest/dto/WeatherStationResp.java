@@ -9,10 +9,11 @@ import java.time.LocalDate;
 @Setter
 public class WeatherStationResp
 {
+    private Long id;
     private String name;
     private String province;
     private LocalDate date;
     private Double meanTemp;
-    private Double highestMonthlyMaxTemp;
-    private Double lowestMonthlyMinTemp;
+    private Double monthlyMaxTemp;
+    private Double monthlyMinTemp;
 }

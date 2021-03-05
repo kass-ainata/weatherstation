@@ -30,16 +30,16 @@ public class WeatherStation
     private LocalDate date;
 
     private Double meanTemp;
-    private Double highestMonthlyMaxTemp;
-    private Double lowestMonthlyMinTemp;
+    private Double monthlyMaxTemp;
+    private Double monthlyMinTemp;
 
-    public WeatherStation(String name, String province, LocalDate date, Double meanTemp, Double highestMonthlyMaxTemp, Double lowestMonthlyMinTemp) {
+    public WeatherStation(String name, String province, LocalDate date, Double meanTemp, Double monthlyMaxTemp, Double monthlyMinTemp) {
         super();
         this.name = name;
         this.province = province;
         this.date = date;
         this.meanTemp = meanTemp;
-        this.highestMonthlyMaxTemp = highestMonthlyMaxTemp;
-        this.lowestMonthlyMinTemp = lowestMonthlyMinTemp;
+        this.monthlyMaxTemp = monthlyMaxTemp;
+        this.monthlyMinTemp = monthlyMinTemp;
     }
 }

@@ -1,5 +1,7 @@
 package com.bankcanada.climate.station.core.service;
 
+import static com.bankcanada.climate.station.util.Utils.toLocalDate;
+
 import com.bankcanada.climate.station.core.converter.StationResponseConverter;
 import com.bankcanada.climate.station.core.repo.WeatherStationRepository;
 import com.bankcanada.climate.station.rest.dto.WeatherStationResp;
@@ -9,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 @AllArgsConstructor
 @Service
@@ -18,7 +21,6 @@ public class WeatherStationServiceImpl implements WeatherStationService
     private StationResponseConverter responseMapper;
     private WeatherStationRepository weatherStationRepository;
     private WeatherStationDataLoader weatherStationDataLoader;
-
 
     @PostConstruct
     private void init(){
@@ -52,25 +54,11 @@ public class WeatherStationServiceImpl implements WeatherStationService
         if ((dateStart == null || dateStart.isEmpty()) && (dateEnd == null || dateEnd.isEmpty())) {
             return this.getAllWeatherStations();
         } else if (dateStart == null || dateStart.isEmpty()) {
-            return this.findAllByDate(mapStringToLocalDate(dateEnd));
+            return this.findAllByDate(toLocalDate(dateEnd));
         } else if (dateEnd == null || dateEnd.isEmpty()) {
-            return this.findAllByDate(mapStringToLocalDate(dateStart));
+            return this.findAllByDate(toLocalDate(dateStart));
         } else {
-            return this.findAllIntervalDates(mapStringToLocalDate(dateStart), mapStringToLocalDate(dateEnd));
+            return this.findAllIntervalDates(toLocalDate(dateStart), toLocalDate(dateEnd));
         }
-    }
-
-    //todo: move this to a mapper class
-    //todo: must handle exception when string can't be parsed into localdate - create exception handler
-    private LocalDate mapStringToLocalDate (String date) {
-        LocalDate dateToReturn;
-        try {
-             dateToReturn = LocalDate.parse(date);
-        } catch (Exception ex) {
-            //todo: throw special exception - add exception handler
-            log.error("failed to parse date");
-            throw ex;
-        }
-        return dateToReturn;
     }
 }

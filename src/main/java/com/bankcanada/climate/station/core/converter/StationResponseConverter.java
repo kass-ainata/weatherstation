@@ -14,14 +14,14 @@ public class StationResponseConverter implements ResponseConverter<WeatherStatio
     @Override
     public WeatherStationResp toResponseDto(WeatherStation sourceObj) {
 
-        WeatherStationResp dto = new WeatherStationResp();
-        dto.setName(sourceObj.getName());
-        dto.setProvince(sourceObj.getProvince());
-        dto.setDate(sourceObj.getDate());
-        dto.setMeanTemp(sourceObj.getMeanTemp());
-        dto.setLowestMonthlyMinTemp(sourceObj.getLowestMonthlyMinTemp());
-        dto.setHighestMonthlyMaxTemp(sourceObj.getHighestMonthlyMaxTemp());
-        return dto;
+        WeatherStationResp stationResp = new WeatherStationResp();
+        stationResp.setName(sourceObj.getName());
+        stationResp.setProvince(sourceObj.getProvince());
+        stationResp.setDate(sourceObj.getDate());
+        stationResp.setMeanTemp(sourceObj.getMeanTemp());
+        stationResp.setMonthlyMinTemp(sourceObj.getMonthlyMinTemp());
+        stationResp.setMonthlyMaxTemp(sourceObj.getMonthlyMaxTemp());
+        return stationResp;
     }
 
     /*

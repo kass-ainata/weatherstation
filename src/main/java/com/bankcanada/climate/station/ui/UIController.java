@@ -27,14 +27,14 @@ public class UIController
     //first thing the user loads
     @GetMapping("/")
     public String getMainPage(Model model) {
-        model.addAttribute("RequestDateRange", new ReqDateInterval());
+        model.addAttribute("ReqDateRange", new ReqDateInterval());
         model.addAttribute("stations", stationService.getAllWeatherStations());
         return "index";
     }
 
     @PostMapping("/")
     public String getStationsByDateRange(Model model, @ModelAttribute ReqDateInterval dateRange) {
-        model.addAttribute("RequestDateRange", dateRange);
+        model.addAttribute("ReqDateRange", dateRange);
         model.addAttribute("stations", stationService.findAllIntervalDates(dateRange.getFromDate(), dateRange.getToDate()));
         return "index";
     }
