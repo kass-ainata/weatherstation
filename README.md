@@ -41,7 +41,6 @@ The requirement document can be found under
 ## Technical Debt
 - Add more test coverage
 - Add pagination mechanism
-- Load the file into the DB line by line
 
 ## Future Enhancements
 - Authentication/Authorization using Spring Security
