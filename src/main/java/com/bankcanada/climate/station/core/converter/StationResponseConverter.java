@@ -14,6 +14,9 @@ public class StationResponseConverter implements ResponseConverter<WeatherStatio
     @Override
     public WeatherStationResp toResponseDto(WeatherStation sourceObj) {
 
+        if (sourceObj == null)
+            return null;
+
         WeatherStationResp stationResp = new WeatherStationResp();
         stationResp.setName(sourceObj.getName());
         stationResp.setProvince(sourceObj.getProvince());

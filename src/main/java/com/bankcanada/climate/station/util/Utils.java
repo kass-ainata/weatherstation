@@ -9,6 +9,7 @@ import java.time.format.DateTimeFormatter;
 public class Utils
 {
     public final static DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+    public static final String API_V_1_STATIONS = "/api/v1/stations";
 
     public static LocalDate toLocalDate(String dateStr) {
         LocalDate dateToReturn;

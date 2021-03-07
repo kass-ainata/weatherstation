@@ -67,7 +67,7 @@ public class UIController
             @RequestParam(name = "province", required = true, defaultValue = "")  String province,
             @RequestParam(name = "date", required = true, defaultValue = "") String date,
             Model model) {
-        model.addAttribute("station", weatherStationService.getWeatherStationByNameProvDate(name, province, LocalDate.parse(date)));
+        model.addAttribute("station", weatherStationService.getWeatherStationByNameProvDate(name, province, LocalDate.parse(date.trim())));
         return "station-details";
     }
 }
