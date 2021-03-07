@@ -41,6 +41,7 @@ The requirement document can be found under
 ## Technical Debt
 - Add more test coverage
 - Add pagination mechanism
+- Add Server side sorting
 
 ## Future Enhancements
 - Authentication/Authorization using Spring Security
