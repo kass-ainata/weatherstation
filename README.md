@@ -45,6 +45,9 @@ The requirement document can be found under
 
 ## Future Enhancements
 - Authentication/Authorization using Spring Security
+- integrate more production Database and store data on disk
+- Dockerize the app/db
+- Implement caching
 - Integrate with continuous integration (CI) ex TeamCity
 - Deploy to Cloud Provider (aws, azure, google cloud...)
 
