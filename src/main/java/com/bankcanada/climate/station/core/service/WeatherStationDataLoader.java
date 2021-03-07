@@ -36,16 +36,32 @@ public class WeatherStationDataLoader
      *  loads the data in the database
      */
     public void readLoadCsvData() {
-        try {
-            for (String[] line : readAll()) {
-                this.weatherStationRepository.save(new WeatherStation(line[0], line[1],  getDate(line[2]),
+
+        BufferedReader bufferedReader = null;
+        CSVReader csvReader = null;
+        try
+        {
+            bufferedReader = new BufferedReader(
+                    new InputStreamReader(new ClassPathResource(CSV_FILE).getInputStream()));
+            csvReader = new CSVReader(bufferedReader);
+            String[] line = null;
+            while ((line = csvReader.readNext()) != null)
+            {
+                weatherStationRepository.save(new WeatherStation(line[0], line[1], getDate(line[2]),
                         getParseDouble(line[3]), getParseDouble(line[4]), getParseDouble(line[5])));
             }
         } catch (Exception ex) {
-            log.error("Unexpected error occured, failed to load the cvs data into the database", ex);
+            log.error("Unexpected error happened, failed to load the cvs data into the database", ex);
+        } finally
+        {
+            try {
+                if (bufferedReader != null) bufferedReader.close();
+                if (csvReader != null) csvReader.close();
+            } catch (Exception e) {
+                log.error("Unexpected error happened, failed to load the cvs data into the database", e);
+            }
         }
     }
-
     private LocalDate getDate(String dateStr){
         if (dateStr != null && Pattern.compile(DATE_REGEX).matcher(dateStr).matches()) {
             return LocalDate.parse(dateStr, DateTimeFormatter.ofPattern(DATE_PATTERN));
@@ -58,17 +74,5 @@ public class WeatherStationDataLoader
             return Double.parseDouble(dString);
         }
         return null;
-    }
-
-    private List<String[]> readAll() throws Exception {
-
-        BufferedReader bufferedReader = new BufferedReader(
-                new InputStreamReader(new ClassPathResource(CSV_FILE).getInputStream()));
-
-        CSVReader csvReader = new CSVReader(bufferedReader);
-        List<String[]> list = csvReader.readAll();
-        bufferedReader.close();
-        csvReader.close();
-        return list;
     }
 }
