@@ -1,8 +1,8 @@
-# Weather Station
-> Java (11) application that provides historic weather-related information
->
-> # Weather Station Demo
-> Java application providing:
+> # Weather Station
+Java (11) application that provides historic weather-related information
+
+# Weather Station Demo
+Java application providing:
 - REST APIs
 - 2 pages that display the weather station information
 - the data can be filtered based on a start/end date
