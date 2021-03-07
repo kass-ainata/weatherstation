@@ -22,7 +22,6 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import static com.bankcanada.climate.station.util.Utils.API_V_1_STATIONS;
 
-
 @SpringBootTest
 @AutoConfigureMockMvc
 class WeatherWeatherStationServiceImplTest
