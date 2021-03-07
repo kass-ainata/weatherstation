@@ -57,7 +57,6 @@ class WeatherWeatherStationServiceImplTest
                     .andExpect(MockMvcResultMatchers.content().contentType("application/json"))
                     .andExpect(jsonPath("$[1].name").value("WABUSH A"))
                     .andExpect(jsonPath("$[1].province").value("NL"));
-
     }
 
     @Test
