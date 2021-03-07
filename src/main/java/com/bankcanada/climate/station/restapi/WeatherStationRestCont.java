@@ -29,24 +29,23 @@ import java.util.List;
 @RequestMapping(API_V_1_STATIONS)
 public class WeatherStationRestCont
 {
-
     private WeatherStationService stationService;
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public List<WeatherStationResp> getAllStations() {
+    public List<WeatherStationResp> getAllWeatherStations() {
         return this.stationService.getAllWeatherStations();
     }
 
     @PostMapping("/")
-    public List<WeatherStationResp> getStationsByDateRange(
+    public List<WeatherStationResp> getWeatherStationsByDateRange(
             @RequestParam(defaultValue = "") String startDate,
             @RequestParam(defaultValue = "") String endDate) {
 
         return stationService.findAllIntervalDates(startDate, endDate);
     }
     @GetMapping("/station-details")
-    public WeatherStationResp getStationDetails(
+    public WeatherStationResp getWeatherStationDetails(
             @RequestParam(defaultValue = "") String name,
             @RequestParam(defaultValue = "") String province,
             @RequestParam(defaultValue = "") String date) {

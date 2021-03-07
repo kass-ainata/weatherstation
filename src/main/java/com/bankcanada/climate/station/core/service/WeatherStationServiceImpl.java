@@ -28,36 +28,35 @@ public class WeatherStationServiceImpl implements WeatherStationService
 
     @Override
     public List<WeatherStationResp> getAllWeatherStations() {
-        return this.responseMapper.toResponseList(this.weatherStationRepository.findAllByOrderByDateAsc());
+        return responseMapper.toResponseList(weatherStationRepository.findAllByOrderByDateAsc());
     }
 
     @Override
     public WeatherStationResp getWeatherStationByNameProvDate(String stationName, String province, LocalDate date) {
-        return this.responseMapper.toResponseDto(
+        return responseMapper.toResponseDto(
                 weatherStationRepository.findByNameAndProvinceAndDate(stationName, province, date));
     }
 
     @Override
     public List<WeatherStationResp> findAllByDate(LocalDate date) {
-        return this.responseMapper.toResponseList(weatherStationRepository.findByDate(date));
+        return responseMapper.toResponseList(weatherStationRepository.findByDate(date));
     }
 
-    @Override
-    public List<WeatherStationResp> findAllIntervalDates(LocalDate dateStart, LocalDate dateEnd) {
-        return this.responseMapper.toResponseList(
+    private List<WeatherStationResp> findAllIntervalDates(LocalDate dateStart, LocalDate dateEnd) {
+        return responseMapper.toResponseList(
                 weatherStationRepository.findAllByDateBetweenOrderByDate(dateStart, dateEnd));
     }
 
     @Override
     public List<WeatherStationResp> findAllIntervalDates(String dateStart, String dateEnd) {
         if ((dateStart == null || dateStart.isEmpty()) && (dateEnd == null || dateEnd.isEmpty())) {
-            return this.getAllWeatherStations();
+            return getAllWeatherStations();
         } else if (dateStart == null || dateStart.isEmpty()) {
-            return this.findAllByDate(toLocalDate(dateEnd));
+            return findAllByDate(toLocalDate(dateEnd));
         } else if (dateEnd == null || dateEnd.isEmpty()) {
-            return this.findAllByDate(toLocalDate(dateStart));
+            return findAllByDate(toLocalDate(dateStart));
         } else {
-            return this.findAllIntervalDates(toLocalDate(dateStart), toLocalDate(dateEnd));
+            return findAllIntervalDates(toLocalDate(dateStart), toLocalDate(dateEnd));
         }
     }
 }
