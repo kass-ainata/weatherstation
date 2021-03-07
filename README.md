@@ -51,3 +51,15 @@ The requirement document can be found under
 - Integrate with continuous integration (CI) ex TeamCity
 - Deploy to Cloud Provider (aws, azure, google cloud...)
 
+## Technology / Framework
+- Java 11
+- Spring Boot 2.3.9
+- Spring, Spring MVC 5.2.13
+- Thymeleaf	3.0.
+- Bootstrap 4.3.1
+- JUnit 5.6.3
+- Mockito 3.3.3
+- Slf4j 1.1.1.0
+- Maven 3.6.3
+- Lombok 1.18.18
+- Json Matcher - hamcrest 1.3
