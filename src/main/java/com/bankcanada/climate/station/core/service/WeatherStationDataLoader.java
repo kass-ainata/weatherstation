@@ -5,8 +5,11 @@ import com.bankcanada.climate.station.core.repo.WeatherStationRepository;
 import com.opencsv.CSVReader;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Service;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.io.Reader;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -58,13 +61,13 @@ public class WeatherStationDataLoader
     }
 
     private List<String[]> readAll() throws Exception {
-        Reader reader = Files.newBufferedReader(Paths.get(
-                ClassLoader.getSystemResource(CSV_FILE).toURI()));
 
-        CSVReader csvReader = new CSVReader(reader);
-        List<String[]> list = new ArrayList<>();
-        list = csvReader.readAll();
-        reader.close();
+        BufferedReader bufferedReader = new BufferedReader(
+                new InputStreamReader(new ClassPathResource(CSV_FILE).getInputStream()));
+
+        CSVReader csvReader = new CSVReader(bufferedReader);
+        List<String[]> list = csvReader.readAll();
+        bufferedReader.close();
         csvReader.close();
         return list;
     }
