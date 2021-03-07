@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Weather Station General Information</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+          crossorigin="anonymous">
+</head>
+<body>
+<div>
+    <p></p>
+    <form action="#" th:action="@{/}" th:object="${ReqDateRange}" method="post">
+        From Date: <input required pattern="[0-9]{4}/[0-9]{2}/[0-9]{2}" placeholder="yyyy/mm/dd" type="text" th:field="*{fromDate}" />
+        To Date: <input required pattern="[0-9]{4}/[0-9]{2}/[0-9]{2}" placeholder="yyyy/mm/dd" type="text" th:field="*{toDate}" />
+            <input type="submit" value="Filter" />
+        <a href="" th:href="@{/}"><span>Clear Filter</span></a>
+    </form>
+    <p></p>
+</div>
+
+<div>
+    <table class="table table-bordered table-hover table-dark">
+        <thead class="thead-dark">
+        <tr>
+            <td>Weather Station</td>
+            <td>Date</td>
+            <td>Temperature</td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:if="${stations.empty}">
+            <td colspan="4">Not Available</td>
+        </tr>
+        <tr th:each="station : ${stations}">
+            <td th:text="${station.name}">Station Name</td>
+            <td th:text="${station.date}">March 5, 2021</td>
+            <td><a href="station-details.html"
+                   th:href="@{/station-details(name=${station.name},province=${station.province},date=${station.date})}"
+                   th:text="${#strings.isEmpty(station.meanTemp)} ? 'Not Available' : ${station.meanTemp}">13.0</a></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
