@@ -21,6 +21,7 @@
 ## Running the application
 To see the code and run the application:
 - clone the code from: https://github.com/kass-ainata/weatherstation
+- git checkout master
 - Compile and tests: ./mvnw clean install
 - Run the app:  java -jar target/bankcanada-0.0.1-SNAPSHOT.war
 - Run the app:  ./mvnw spring-boot:run
@@ -46,3 +47,4 @@ The requirement document can be found under
 - Authentication/Authorization using Spring Security
 - Integrate with continuous integration (CI) ex TeamCity
 - Deploy to Cloud Provider (aws, azure, google cloud...)
+
