@@ -42,6 +42,7 @@ The requirement document can be found under
 - Add more test coverage
 - Add pagination mechanism
 - Add Server side sorting
+- Lazy load the data in the UI - get first page (~20 rows) on page load and then use AJAX to call the REST api to get more data/pages
 
 ## Future Enhancements
 - Authentication/Authorization using Spring Security
